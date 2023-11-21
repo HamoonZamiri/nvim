@@ -14,7 +14,7 @@ map("n", "<leader>L", "<nop>") -- LazyVim changelog
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
-map("n", "<C-C>", "<cmd> %y+ <cr>`]", { desc = "Copy entire file" })
+map("n", "<C-C>", "<cmd> %y+ <cr>", { desc = "Copy entire file" })
 map("n", "<C-A>", "ggVG", { desc = "Select entire file" })
 
 vim.keymap.set("n", "<C-/>", function()
