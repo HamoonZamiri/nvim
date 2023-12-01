@@ -23,9 +23,17 @@ map("n", "<leader>K", "<cmd> lua vim.lsp.buf.hover() <cr>", { desc = "Hover" }) 
 map("n", "<C-C>", "<cmd> %y+ <cr>", { desc = "Copy entire file" })
 map("n", "<C-A>", "ggVG", { desc = "Select entire file" })
 
-vim.keymap.set("n", "<C-/>", function()
+map("n", "<C-/>", function()
   require("lazyvim.util").terminal(nil, { border = "rounded" })
 end, { desc = "Term with border" })
+
+-- https://github.com/nvim-telescope/telescope.nvim/issues/964#issuecomment-1517629615
+map("n", "<leader>fS", function()
+  vim.ui.input({ prompt = "Workspace symbols: " }, function(query)
+    require("telescope.builtin").lsp_workspace_symbols({ query = query })
+  end)
+end, { desc = "LSP workspace symbols" })
+
 --[[ Harpoon mappings ]]
 -- stylua: ignore
 if vim.bo["filetype"] ~= "rnvimr" then
@@ -39,4 +47,10 @@ if vim.bo["filetype"] ~= "rnvimr" then
   map("n", "<leader>8", function() require("harpoon.ui").nav_file(8) end, { desc = "Harpoon 8" })
   map("n", "<leader>9", function() require("harpoon.ui").nav_file(9) end, { desc = "Harpoon 9" })
   map("n", "<leader>0", function() require("harpoon.ui").nav_file(0) end, { desc = "Harpoon 0" })
+end
+
+-- [[ git diff mappings ]]
+if vim.bo.filetype == "git" or vim.bo.filetype == "diff" then
+  map("n", "<leader>1", ":diffget //2<cr>", { desc = "Git diff get 2" })
+  map("n", "<leader>2", ":diffget //3<cr>", { desc = "Git diff get 3" })
 end
