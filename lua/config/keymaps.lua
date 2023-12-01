@@ -26,3 +26,17 @@ map("n", "<C-A>", "ggVG", { desc = "Select entire file" })
 vim.keymap.set("n", "<C-/>", function()
   require("lazyvim.util").terminal(nil, { border = "rounded" })
 end, { desc = "Term with border" })
+--[[ Harpoon mappings ]]
+-- stylua: ignore
+if vim.bo["filetype"] ~= "rnvimr" then
+  map("n", "<leader>1", function() require("harpoon.ui").nav_file(1) end, { desc = "Harpoon 1" })
+  map("n", "<leader>2", function() require("harpoon.ui").nav_file(2) end, { desc = "Harpoon 2" })
+  map("n", "<leader>3", function() require("harpoon.ui").nav_file(3) end, { desc = "Harpoon 3" })
+  map("n", "<leader>4", function() require("harpoon.ui").nav_file(4) end, { desc = "Harpoon 4" })
+  map("n", "<leader>5", function() require("harpoon.ui").nav_file(5) end, { desc = "Harpoon 5" })
+  map("n", "<leader>6", function() require("harpoon.ui").nav_file(6) end, { desc = "Harpoon 6" })
+  map("n", "<leader>7", function() require("harpoon.ui").nav_file(7) end, { desc = "Harpoon 7" })
+  map("n", "<leader>8", function() require("harpoon.ui").nav_file(8) end, { desc = "Harpoon 8" })
+  map("n", "<leader>9", function() require("harpoon.ui").nav_file(9) end, { desc = "Harpoon 9" })
+  map("n", "<leader>0", function() require("harpoon.ui").nav_file(0) end, { desc = "Harpoon 0" })
+end
