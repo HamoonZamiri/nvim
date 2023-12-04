@@ -19,8 +19,6 @@ map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 -- map("n", "J", "<C-e>", { desc = "Move screen down" })
 -- map("n", "K", "<C-y>", { desc = "Move screen up" })
 -- map("n", "<leader>K", "<cmd> lua vim.lsp.buf.hover() <cr>", { desc = "Hover" }) -- Change previous K to <leader>K
-map("n", "<C-j>", "<C-e>", { desc = "Move screen down" })
-map("n", "<C-k>", "<C-y>", { desc = "Move screen up" })
 
 map("n", "<C-C>", "<cmd> %y+ <cr>", { desc = "Copy entire file" })
 map("n", "<C-A>", "ggVG", { desc = "Select entire file" })
