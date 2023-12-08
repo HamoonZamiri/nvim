@@ -5,11 +5,39 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmds = vim.api.nvim_create_autocmd
 augroup("discontinue_comments", { clear = true })
-autocmds({ "FileType" }, {
+autocmds("FileType", {
   pattern = { "*" },
   callback = function()
     vim.opt.formatoptions = vim.opt.formatoptions - "o"
   end,
   group = "discontinue_comments",
-  desc = "Dont't continue comments with o/O",
+  desc = "Don't continue comments with o/O",
+})
+
+autocmds("FileType", {
+  pattern = { "tex" },
+  callback = function()
+    vim.opt.wrap = true
+  end,
+  desc = "Toggle word wrap for Latex files",
+})
+
+autocmds("VimEnter", {
+  desc = "Auto select virtualenv Nvim open",
+  pattern = "*",
+  callback = function()
+    local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
+    if venv ~= "" then
+      require("venv-selector").retrieve_from_cache()
+    end
+  end,
+  once = true,
+})
+
+autocmds("FileType", {
+  desc = "Auto select virtualenv when opening a python file",
+  pattern = { "python" },
+  callback = function()
+    require("venv-selector").retrieve_from_cache()
+  end,
 })
