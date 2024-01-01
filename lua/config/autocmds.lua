@@ -41,3 +41,19 @@ autocmds("FileType", {
     require("venv-selector").retrieve_from_cache()
   end,
 })
+
+autocmds("FileType", {
+  desc = "Set indent to 4 spaces for kt files",
+  pattern = { "kt" },
+  callback = function()
+    vim.opt.tabstop = 4
+    vim.opt.shiftwidth = 4
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "kotlin",
+  callback = function()
+    vim.bo.commentstring = "// %s"
+  end,
+})
