@@ -20,9 +20,6 @@ map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 -- map("n", "K", "<C-y>", { desc = "Move screen up" })
 -- map("n", "<leader>K", "<cmd> lua vim.lsp.buf.hover() <cr>", { desc = "Hover" }) -- Change previous K to <leader>K
 
-map("n", "<C-C>", "<cmd> %y+ <cr>", { desc = "Copy entire file" })
-map("n", "<C-A>", "ggVG", { desc = "Select entire file" })
-
 map("n", "<C-/>", function()
   require("lazyvim.util").terminal(nil, { border = "rounded" })
 end, { desc = "Term with border" })
