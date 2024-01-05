@@ -33,6 +33,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.yaml" },
 
     { import = "lazyvim.plugins.extras.lang.tex" },
+    { import = "lazyvim.plugins.extras.dap" },
+
     -- import/override with your plugins
     { import = "plugins" },
   },
