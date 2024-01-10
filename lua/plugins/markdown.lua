@@ -53,4 +53,42 @@ return {
       end)
     end,
   },
+
+  -- Obsidian - https://blog.gabedunn.dev/posts/2023-03-09-neovim-config.html#obsidian
+  {
+    "epwalsh/obsidian.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open Obsidian" },
+      { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Create a new Obsidian Document" },
+      { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian" },
+      { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Quick Switch" },
+    },
+    opts = {
+      dir = "~/Documents/Obsidian Vault",
+      completion = {
+        nvim_cmp = true, -- with this set to true, it automatically configures completion on its own
+      },
+      disable_frontmatter = true,
+    },
+    config = function(_, opts)
+      require("obsidian").setup(opts)
+
+      -- if cursor is on a link in an obsidian file, gf will follow the reference, otherwise it will behave normally
+      vim.keymap.set("n", "gf", function()
+        if require("obsidian").util.cursor_on_markdown_link() then
+          return "<cmd>ObsidianFollowLink<CR>"
+        else
+          return "gf"
+        end
+      end, { noremap = false, expr = true })
+    end,
+  },
+
+  {
+    "folke/which-key.nvim",
+    opts = function(_, opts)
+      opts.defaults["<leader>o"] = { name = "+obsidian" }
+    end,
+  },
 }
