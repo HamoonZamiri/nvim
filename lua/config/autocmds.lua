@@ -64,3 +64,15 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.conceallevel = 2
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "tex,markdown",
+  callback = function()
+    require("mini.pairs").map_buf(
+      0,
+      "i",
+      "$",
+      { action = "closeopen", pair = "$$", neigh_pattern = "[^\\].", register = { cr = false } }
+    )
+  end,
+})

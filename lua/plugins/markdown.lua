@@ -57,12 +57,17 @@ return {
   -- Obsidian - https://blog.gabedunn.dev/posts/2023-03-09-neovim-config.html#obsidian
   {
     "epwalsh/obsidian.nvim",
-    event = "VeryLazy",
+    version = "*",
+    lazy = true,
+    ft = "markdown",
+    dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open Obsidian" },
       { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Create a new Obsidian Document" },
       { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian" },
       { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Quick Switch" },
+      { "<leader>op", "<cmd>ObsidianPasteImg<cr>", desc = "Obsidian Paste Image" },
+      { "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Obsidian Rename current note" },
     },
     opts = {
       dir = "~/Documents/Obsidian Vault",
