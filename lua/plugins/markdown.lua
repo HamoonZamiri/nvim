@@ -68,6 +68,7 @@ return {
       { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Quick Switch" },
       { "<leader>op", "<cmd>ObsidianPasteImg<cr>", desc = "Obsidian Paste Image" },
       { "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Obsidian Rename current note" },
+      { "<leader>ot", "<cmd>ObsidianTemplate<cr>", desc = "Insert Obsidian Template into file" },
     },
     opts = {
       dir = "~/Documents/Obsidian Vault",
@@ -75,6 +76,10 @@ return {
         nvim_cmp = true, -- with this set to true, it automatically configures completion on its own
       },
       disable_frontmatter = true,
+      templates = {
+        subdir = "templates",
+        date_format = "%Y-%m-%d",
+      },
     },
     config = function(_, opts)
       require("obsidian").setup(opts)
