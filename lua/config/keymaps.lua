@@ -21,8 +21,10 @@ local Util = require("lazyvim.util")
 local lazyterm = function()
   Util.terminal(nil, { cwd = Util.root(), border = "rounded" })
 end
-map("n", "÷", lazyterm, { desc = "Terminal (root dir)" }) -- <Opt-/>
-map("t", "÷", "<cmd>close<cr>", { desc = "Hide Terminal" }) -- <Opt-/>
+map("n", "…", lazyterm, { desc = "Terminal (root dir)" }) -- Option + ;
+map("t", "…", "<cmd>close<cr>", { desc = "Hide Terminal" }) -- Option + ;
+map("n", "Ú", lazyterm, { desc = "Terminal (root dir)" }) -- Option + Shift + ;
+map("t", "Ú", "<cmd>close<cr>", { desc = "Hide Terminal" }) -- Option + Shift + ;
 
 -- https://github.com/nvim-telescope/telescope.nvim/issues/964#issuecomment-1517629615
 map("n", "<leader>fS", function()
