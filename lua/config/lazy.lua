@@ -11,12 +11,14 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
-    -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
+
     { import = "lazyvim.plugins.extras.coding.copilot" },
     -- { import = "lazyvim.plugins.extras.coding.codeium" },
 
     { import = "lazyvim.plugins.extras.linting" },
     { import = "lazyvim.plugins.extras.formatting" },
+
+    -- Just for racket formatting for now
     { import = "lazyvim.plugins.extras.lsp.none-ls" },
 
     -- Languages
@@ -31,9 +33,10 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
-
     { import = "lazyvim.plugins.extras.lang.tex" },
+
     { import = "lazyvim.plugins.extras.dap" },
+    { import = "lazyvim.plugins.extras.ui.edgy" },
 
     -- import/override with your plugins
     { import = "plugins" },
