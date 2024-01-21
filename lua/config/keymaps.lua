@@ -15,14 +15,14 @@ map("n", "<leader>L", "<nop>") -- LazyVim changelog
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
--- move screen up/down
--- map("n", "J", "<C-e>", { desc = "Move screen down" })
--- map("n", "K", "<C-y>", { desc = "Move screen up" })
--- map("n", "<leader>K", "<cmd> lua vim.lsp.buf.hover() <cr>", { desc = "Hover" }) -- Change previous K to <leader>K
+-- -- floating terminal
+local Util = require("lazyvim.util")
 
-map("n", "<C-/>", function()
-  require("lazyvim.util").terminal(nil, { border = "rounded" })
-end, { desc = "Term with border" })
+local lazyterm = function()
+  Util.terminal(nil, { cwd = Util.root(), border = "rounded" })
+end
+map("n", "÷", lazyterm, { desc = "Terminal (root dir)" }) -- <Opt-/>
+map("t", "÷", "<cmd>close<cr>", { desc = "Hide Terminal" }) -- <Opt-/>
 
 -- https://github.com/nvim-telescope/telescope.nvim/issues/964#issuecomment-1517629615
 map("n", "<leader>fS", function()
