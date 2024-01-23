@@ -15,11 +15,12 @@ autocmds("FileType", {
 })
 
 autocmds("FileType", {
-  pattern = { "tex" },
+  pattern = { "tex", "markdown" },
   callback = function()
     vim.opt.wrap = true
+    vim.opt.linebreak = true
   end,
-  desc = "Toggle word wrap for Latex files",
+  desc = "Toggle word wrap for Latex and Markdown files",
 })
 
 autocmds("VimEnter", {
