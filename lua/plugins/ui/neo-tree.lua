@@ -2,6 +2,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
+      enable_normal_mode_for_inputs = true,
       filesystem = {
         -- Make neo-tree group empty directories like kotlin/com/example
         group_empty_dirs = true,
@@ -17,6 +18,7 @@ return {
             end,
             desc = "open_with_system_defaults",
           },
+          ["K"] = "show_file_details",
         },
       },
     },
