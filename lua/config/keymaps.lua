@@ -14,6 +14,7 @@ disable("n", "<leader>cm") -- open Mason
 disable("n", "<leader>cl") -- LspInfo
 disable("n", "<leader>L") -- LazyVim changelog
 disable("i", "<C-w>") -- delete backwards in insert mode, redefined below
+disable("i", "<C-j>") -- move down in insert mode, redefined below
 
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up" })
@@ -55,3 +56,4 @@ map("i", "<Tab>", function()
 end, { desc = "Tab" })
 
 map("i", "<C-w>", require("copilot.suggestion").accept_word, { desc = "Copilot accept single word" })
+map("i", "<C-j>", require("copilot.suggestion").next, { desc = "Copilot next suggestion" })
