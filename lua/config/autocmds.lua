@@ -60,6 +60,13 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+  pattern = "racket",
+  callback = function()
+    vim.bo.commentstring = "; %s"
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   callback = function()
     vim.opt_local.conceallevel = 2
