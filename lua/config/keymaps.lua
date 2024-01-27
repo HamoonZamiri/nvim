@@ -56,3 +56,14 @@ if vim.bo.filetype == "git" or vim.bo.filetype == "diff" then
   map("n", "<leader>1", ":diffget //2<cr>", { desc = "Git diff get 2" })
   map("n", "<leader>2", ":diffget //3<cr>", { desc = "Git diff get 3" })
 end
+
+-- Copilot + LuaSnip
+map("i", "<Tab>", function()
+  if require("copilot.suggestion").is_visible() then
+    require("copilot.suggestion").accept()
+  elseif require("luasnip").jumpable(1) then
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-next", true, false, true), "m", false)
+  else
+    return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+  end
+end, { desc = "Tab" })
