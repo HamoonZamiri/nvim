@@ -75,5 +75,5 @@ map("i", "<Tab>", function()
   end
 end, { desc = "Tab" })
 
-map("i", "<C-w>", require("copilot.suggestion").accept_word, { desc = "Copilot accept single word" })
+map("i", "<C-l>", require("copilot.suggestion").accept_word, { desc = "Copilot accept single word" })
 map("i", "<C-j>", require("copilot.suggestion").next, { desc = "Copilot next suggestion" })
