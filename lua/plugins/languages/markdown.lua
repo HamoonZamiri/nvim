@@ -42,6 +42,9 @@ return {
           table.insert(opts[ft].headline_highlights, hl)
         end
       end
+
+      opts.markdown.fat_headlines = false -- iTerm2 doesn't render it properly
+
       return opts
     end,
     ft = { "markdown", "norg", "rmd", "org" },
