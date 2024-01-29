@@ -22,7 +22,10 @@ return {
     ft = { "racket" },
     opts = {
       sources = {
-        require("null-ls").builtins.formatting.raco_fmt,
+        require("null-ls").builtins.formatting.raco_fmt.with({
+          command = "raco",
+          args = { "fmt", "--width", "60" },
+        }),
       },
     },
   },
