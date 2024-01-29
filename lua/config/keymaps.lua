@@ -16,21 +16,13 @@ disable("n", "<leader>L") -- LazyVim changelog
 disable("i", "<C-w>") -- delete backwards in insert mode, redefined below
 disable("i", "<C-j>") -- move down in insert mode, redefined below
 
+--[[ General Mappings ]]
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
--- -- floating terminal
-local Util = require("lazyvim.util")
-
-local lazyterm = function()
-  Util.terminal(nil, { cwd = Util.root(), border = "rounded" })
-end
-map("n", "…" --[[ Option + ; ]], lazyterm, { desc = "Terminal (root dir)" })
-map("t", "…" --[[ Option + ; ]], "<cmd>close<cr>", { desc = "Hide Terminal" })
-map("n", "Ú" --[[ Option + Shift + ; ]], lazyterm, { desc = "Terminal (root dir)" })
-map("t", "Ú" --[[ Option + Shift + ; ]], "<cmd>close<cr>", { desc = "Hide Terminal" })
-map("n", "<C-;>", lazyterm, { desc = "Terminal (root dir)" })
-map("t", "<C-;>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+-- Make :Q act like :q and :Qa act like :qa
+vim.api.nvim_create_user_command("Q", "q", {})
+vim.api.nvim_create_user_command("Qa", "qa", {})
 
 -- https://github.com/nvim-telescope/telescope.nvim/issues/964#issuecomment-1517629615
 -- Make a workspace symbol search take an input because it's broken with empty string
@@ -45,6 +37,19 @@ if vim.bo.filetype == "git" or vim.bo.filetype == "diff" then
   map("n", "<leader>1", ":diffget //2<cr>", { desc = "Git diff get 2" })
   map("n", "<leader>2", ":diffget //3<cr>", { desc = "Git diff get 3" })
 end
+
+--[[ Floating Terminal ]]
+local Util = require("lazyvim.util")
+
+local lazyterm = function()
+  Util.terminal(nil, { cwd = Util.root(), border = "rounded" })
+end
+map("n", "…" --[[ Option + ; ]], lazyterm, { desc = "Terminal (root dir)" })
+map("t", "…" --[[ Option + ; ]], "<cmd>close<cr>", { desc = "Hide Terminal" })
+map("n", "Ú" --[[ Option + Shift + ; ]], lazyterm, { desc = "Terminal (root dir)" })
+map("t", "Ú" --[[ Option + Shift + ; ]], "<cmd>close<cr>", { desc = "Hide Terminal" })
+map("n", "<C-;>", lazyterm, { desc = "Terminal (root dir)" })
+map("t", "<C-;>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 --[[ Harpoon mappings ]]
 -- stylua: ignore
