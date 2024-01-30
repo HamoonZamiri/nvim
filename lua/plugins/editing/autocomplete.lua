@@ -2,16 +2,18 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    opts = {
-      window = {
+    opts = function(_, opts)
+      opts.window = {
         completion = require("cmp").config.window.bordered(),
         documentation = require("cmp").config.window.bordered(),
-      },
+      }
       -- disable ghost text for autocomplete since copilot is using ghost text
-      experimental = {
+      opts.experimental = {
         ghost_text = false,
-      },
-    },
+      }
+
+      return opts
+    end,
   },
 
   -- this is for copilot in autocomplete menu, don't need this since using ghost text
