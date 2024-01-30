@@ -20,13 +20,13 @@ return {
   {
     "nvimtools/none-ls.nvim",
     ft = { "racket" },
-    opts = {
-      sources = {
+    opts = function(_, opts)
+      opts.sources = {
         require("null-ls").builtins.formatting.raco_fmt.with({
           command = "raco",
           args = { "fmt", "--width", "60" },
         }),
-      },
-    },
+      }
+    end,
   },
 }
