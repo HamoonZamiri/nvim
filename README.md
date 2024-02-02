@@ -25,4 +25,7 @@ brew install ripgrep fzf
 ```
 See [ripgrep](https://github.com/BurntSushi/ripgrep) and [fzf](https://github.com/junegunn/fzf) for more information.
 
-- Start neovim using `nvim`, and enjoy :)
+- Start neovim:
+```bash
+nvim
+```
