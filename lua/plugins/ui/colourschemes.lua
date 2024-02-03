@@ -8,26 +8,18 @@ return {
 
   {
     "Mofiqul/vscode.nvim",
-    opts = {
-      italic_comments = false,
-    },
-  },
-
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "vscode",
-    },
   },
 
   {
     "akinsho/bufferline.nvim",
+    dependencies = "Mofiqul/vscode.nvim",
     opts = function(_, opts)
       -- only set this configs for vscode theme
+      vim.notify(vim.g.colors_name)
       if vim.g.colors_name == "vscode" then
-        vim.list_extend(opts.options, {
-          close_icon = "",
-          buffer_close_icon = "",
+        opts.options = opts.options or {}
+        opts.highlights = opts.highlights or {}
+        table.insert(opts.options, {
           indicator = {
             style = "icon",
             icon = " ",
@@ -39,10 +31,7 @@ return {
           show_close_icon = false,
           show_tab_indicators = true,
         })
-        if opts.highlights == nil then
-          opts.highlights = {}
-        end
-        vim.list_extend(opts.highlights, {
+        opts.highlights = {
           fill = {
             fg = { attribute = "fg", highlight = "Normal" },
             bg = { attribute = "bg", highlight = "StatusLineNC" },
@@ -83,9 +72,16 @@ return {
             fg = { attribute = "fg", highlight = "Normal" },
             bg = { attribute = "bg", highlight = "Normal" },
           },
-        })
+        }
       end
-      return opts
+      vim.notify(opts)
     end,
+  },
+
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+    },
   },
 }
