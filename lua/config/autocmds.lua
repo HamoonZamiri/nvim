@@ -89,7 +89,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 local function autosave()
-  if vim.b.autosave then
+  if vim.b.autosave and not vim.g.autosave then
     if vim.b.autoformat then
       ---@diagnostic disable-next-line: inject-field
       vim.b.autoformat = false -- Obviously if autosave is on, autoformat should be off
