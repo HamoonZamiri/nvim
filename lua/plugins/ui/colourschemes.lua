@@ -15,7 +15,6 @@ return {
     dependencies = "Mofiqul/vscode.nvim",
     opts = function(_, opts)
       -- only set this configs for vscode theme
-      vim.notify(vim.g.colors_name)
       if vim.g.colors_name == "vscode" then
         opts.options = opts.options or {}
         opts.highlights = opts.highlights or {}
@@ -74,7 +73,6 @@ return {
           },
         }
       end
-      vim.notify(opts)
     end,
   },
 
