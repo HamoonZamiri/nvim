@@ -12,10 +12,14 @@ return {
 
   {
     "akinsho/bufferline.nvim",
-    dependencies = "Mofiqul/vscode.nvim",
     opts = function(_, opts)
       -- only set this configs for vscode theme
       if vim.g.colors_name == "vscode" then
+        -- disable diagnostics to improve the look for now
+        -- TODO: remove when https://github.com/Mofiqul/vscode.nvim/issues/168 resolved
+        opts.options.dianostics = ""
+        opts.options.diagnostics_indicator = false
+
         opts.options = opts.options or {}
         opts.highlights = opts.highlights or {}
         table.insert(opts.options, {
