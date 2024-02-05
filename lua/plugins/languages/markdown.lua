@@ -68,7 +68,7 @@ return {
       { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open Obsidian" },
       { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Create a new Obsidian Document" },
       { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian" },
-      { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Quick Switch" },
+      { "<leader>of", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Find Files" },
       { "<leader>op", "<cmd>ObsidianPasteImg<cr>", desc = "Obsidian Paste Image" },
       { "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Obsidian Rename current note" },
       { "<leader>ot", "<cmd>ObsidianTemplate<cr>", desc = "Insert Obsidian Template into file" },

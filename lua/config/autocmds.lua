@@ -85,6 +85,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.conceallevel = 2
     ---@diagnostic disable-next-line: inject-field
     vim.b.autosave = true
+    vim.b.autoformat = false
   end,
 })
 
