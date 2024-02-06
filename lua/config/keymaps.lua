@@ -2,7 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local map = require("lazyvim.util").safe_keymap_set
+local map = vim.keymap.set
 
 -- disable
 local function disable(mode, key)
