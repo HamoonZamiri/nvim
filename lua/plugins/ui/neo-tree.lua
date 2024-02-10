@@ -14,7 +14,7 @@ return {
             command = function(state)
               local filepath = state.tree:get_node().path
 
-              os.execute("open " .. filepath)
+              os.execute("open " .. string.format("'%s'", filepath))
             end,
             desc = "open_with_system_defaults",
           },

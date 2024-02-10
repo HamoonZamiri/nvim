@@ -8,3 +8,5 @@ vim.diagnostic.config({
     border = "rounded",
   },
 })
+
+vim.opt.mousescroll = "ver:1,hor:6" -- Default: "ver:3,hor:6"
