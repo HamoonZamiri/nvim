@@ -34,7 +34,10 @@ return {
       local opts = {}
       for _, ft in ipairs({ "markdown", "norg", "rmd", "org" }) do
         opts[ft] = {
-          headline_highlights = {},
+          headline_highlights = {}, -- replace with custom highlights below
+          fat_headlines = false, -- iTerm2 doesn't render it properly
+          bullets = {}, -- display the default ## instead of the bullet
+          bullet_highlights = {},
         }
         for i = 1, 6 do
           local hl = "Headline" .. i
@@ -42,8 +45,6 @@ return {
           table.insert(opts[ft].headline_highlights, hl)
         end
       end
-
-      opts.markdown.fat_headlines = false -- iTerm2 doesn't render it properly
 
       return opts
     end,
