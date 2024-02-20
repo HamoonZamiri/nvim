@@ -76,6 +76,7 @@ return {
     },
     opts = {
       dir = "~/Documents/Obsidian Vault",
+      open_app_foreground = true,
       completion = {
         nvim_cmp = true, -- with this set to true, it automatically configures completion on its own
       },
