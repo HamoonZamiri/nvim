@@ -2,6 +2,12 @@
 
 This set of configuration was taken from [LazyVim](https://github.com/LazyVim/LazyVim) and modified to my liking.
 
+![Neovim Start](./assets/Neovim.png)
+
+![Neovim editing](./assets/TextEditing.png)
+
+![Neovim Search](./assets/Telescope.png)
+
 ## Installation
 
 - Install nvim. On macOS, you can use Homebrew:
