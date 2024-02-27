@@ -20,6 +20,11 @@ disable("i", "<C-j>") -- move down in insert mode, redefined below
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
+-- https://github.com/NvChad/NvChad/blob/8aec881517ae9e39990507f3bc7dfebfb38d531a/lua/core/mappings.lua#L73
+vim.opt.clipboard = "unnamedplus"
+-- map("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { desc = "Paste without copying" })
+map("x", "p", "pgv=gvy", { desc = "Paste without copying" })
+
 -- Make :Q act like :q and :Qa act like :qa
 vim.api.nvim_create_user_command("Q", "q", {})
 vim.api.nvim_create_user_command("Qa", "qa", {})
@@ -82,3 +87,7 @@ end, { desc = "Tab" })
 
 map("i", "<C-l>", require("copilot.suggestion").accept_word, { desc = "Copilot accept single word" })
 map("i", "<C-j>", require("copilot.suggestion").next, { desc = "Copilot next suggestion" })
+map("i", "<C-e>", function()
+  require("copilot.suggestion").dismiss()
+  require("cmp").mapping.abort()
+end, { desc = "Close cmp and dismiss copilot" })
