@@ -13,6 +13,9 @@ return {
     },
     config = function()
       require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/snippets" } })
+      require("luasnip").config.set_config({
+        store_selection_keys = "<Tab>",
+      })
     end,
   },
 

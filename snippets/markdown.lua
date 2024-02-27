@@ -1,13 +1,24 @@
 -- https://www.ejmastnak.com/tutorials/vim-latex/luasnip/
 local ls = require("luasnip")
 local s = ls.s
+local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
+local d = ls.dynamic_node
+local f = ls.function_node
 local fmta = require("luasnip.extras.fmt").fmta
 
 local markdown_helper = require("plugins.languages.helper.markdown-helper")
 local in_mathzone = markdown_helper.in_mathzone
 local in_text = markdown_helper.in_text
+
+local get_visual = function(args, parent)
+  if #parent.snippet.env.SELECT_RAW > 0 then
+    return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
+  else
+    return sn(nil, i(1, ""))
+  end
+end
 
 -- TODO: Add snippets from here: https://www.ejmastnak.com/tutorials/vim-latex/luasnip/#context-specific-expansion-for-latex
 
@@ -28,18 +39,36 @@ return {
   -- fmta snippets
   s(
     { trig = "b", name = "**bold** text" },
-    fmta("**<bold_text>**<finish>", { bold_text = i(1), finish = i(0) }),
+    fmta("<visual>**<bold_text>**<finish>", {
+      visual = f(function(_, snip)
+        return snip.captures[1]
+      end),
+      bold_text = d(1, get_visual),
+      finish = i(0),
+    }),
     { show_condition = in_text }
   ),
   s(
     { trig = "i", name = "*italic* text" },
-    fmta("*<italic_text>*<finish>", { italic_text = i(1), finish = i(0) }),
+    fmta("<visual>*<italic_text>*<finish>", {
+      visual = f(function(_, snip)
+        return snip.captures[1]
+      end),
+      italic_text = d(1, get_visual),
+      finish = i(0),
+    }),
     { show_condition = in_text }
   ),
 
   s(
     { trig = "mi", name = "inline math $$" },
-    fmta("$<math>$<finish>", { math = i(1), finish = i(0) }),
+    fmta("<visual>$<math>$<finish>", {
+      visual = f(function(_, snip)
+        return snip.captures[1]
+      end),
+      math = d(1, get_visual),
+      finish = i(0),
+    }),
     { show_condition = in_text }
   ),
 
@@ -47,12 +76,19 @@ return {
     { trig = "mb", name = "block math $$ $$" },
     fmta(
       [[
+<visual>
 $$
 <math>
 $$
 <finish>
   ]],
-      { math = i(1), finish = i(0) }
+      {
+        visual = f(function(_, snip)
+          return snip.captures[1]
+        end),
+        math = d(1, get_visual),
+        finish = i(0),
+      }
     ),
     { show_condition = in_text }
   ),
@@ -110,11 +146,28 @@ $$
     { show_condition = in_text }
   ),
 
+  s(
+    { trig = "ff", name = "Fraction" },
+    fmta("<visual>$\\frac{<>}{<>}$", {
+      visual = f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, get_visual),
+      i(2),
+    }),
+    {
+      show_condition = in_text,
+    }
+  ),
+
   -- MATH snippets
   s(
     { trig = "ff", name = "Fraction" },
-    fmta("\\frac{<>}{<>}", {
-      i(1),
+    fmta("<visual>\\frac{<>}{<>}", {
+      visual = f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, get_visual),
       i(2),
     }),
     {

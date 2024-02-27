@@ -83,7 +83,15 @@ map("i", "<Tab>", function()
   else
     return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
   end
-end, { desc = "Tab" })
+end, { desc = "Tab, or accept copilot, or jump in snippet" })
+
+map("i", "<S-Tab>", function()
+  if require("luasnip").jumpable(-1) then
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, false, true), "m", false)
+  else
+    return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Tab>", true, false, true), "n", false)
+  end
+end, { desc = "Shift-Tab, or jump back in snippet" })
 
 map("i", "<C-l>", require("copilot.suggestion").accept_word, { desc = "Copilot accept single word" })
 map("i", "<C-j>", require("copilot.suggestion").next, { desc = "Copilot next suggestion" })
