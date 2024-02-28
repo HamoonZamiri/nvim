@@ -1,3 +1,5 @@
+require("luasnip.session.snippet_collection").clear_snippets("markdown")
+
 -- https://www.ejmastnak.com/tutorials/vim-latex/luasnip/
 local ls = require("luasnip")
 local s = ls.s
@@ -6,6 +8,7 @@ local t = ls.text_node
 local i = ls.insert_node
 local d = ls.dynamic_node
 local f = ls.function_node
+local rep = require("luasnip.extras").rep
 local fmta = require("luasnip.extras.fmt").fmta
 
 local markdown_helper = require("plugins.languages.helper.markdown-helper")
@@ -97,12 +100,11 @@ $$
     { trig = "cb", name = "code block ```" },
     fmta(
       [[
-  ```<language>
-  <code>
+  ```<>
   ```
   <finish>
   ]],
-      { language = i(1), code = i(2), finish = i(0) }
+      { i(1), finish = i(0) }
     ),
     { show_condition = in_text }
   ),
@@ -120,10 +122,10 @@ $$
   <finish>
   ]],
       {
-        first = i(1),
-        first_condition = i(2),
-        second = i(3),
-        second_condition = i(4),
+        first = i(1, "<statement>"),
+        first_condition = i(2, "<condition>"),
+        second = i(3, "<statement>"),
+        second_condition = i(4, "<condition>"),
         finish = i(0),
       }
     ),
@@ -162,7 +164,7 @@ $$
 
   -- MATH snippets
   s(
-    { trig = "ff", name = "Fraction" },
+    { trig = "ff", name = "Fraction", snippetType = "autosnippet" },
     fmta("<visual>\\frac{<>}{<>}", {
       visual = f(function(_, snip)
         return snip.captures[1]
@@ -176,4 +178,36 @@ $$
   ),
 
   s("N", { t("\\mathbb{N}") }, { show_condition = in_mathzone }),
+  s("L", { t("\\mathcal{L}") }, { show_condition = in_mathzone }),
+
+  s(
+    { trig = "txt", name = "Text", snippetType = "autosnippet" },
+    fmta(
+      "<visual>\\text{ <text> }",
+      { visual = f(function(_, snip)
+        return snip.captures[1]
+      end), text = d(1, get_visual) }
+    ),
+    { show_condition = in_mathzone }
+  ),
+
+  s(
+    { trig = "env", name = "Environment" },
+    fmta(
+      [[
+      <visual>\begin{<env>}
+          <content>
+      \end{<env_same>}
+      ]],
+      {
+        visual = f(function(_, snip)
+          return snip.captures[1]
+        end),
+        env = i(1),
+        content = d(2, get_visual),
+        env_same = rep(1),
+      }
+    ),
+    { show_condition = in_mathzone }
+  ),
 }
