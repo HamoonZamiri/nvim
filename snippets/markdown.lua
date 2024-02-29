@@ -79,8 +79,7 @@ return {
     { trig = "mb", name = "block math $$ $$" },
     fmta(
       [[
-<visual>
-$$
+<visual>$$
 <math>
 $$
 <finish>

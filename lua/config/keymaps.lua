@@ -4,7 +4,6 @@
 
 local map = vim.keymap.set
 
--- disable
 local function disable(mode, key)
   vim.api.nvim_set_keymap(mode, key, "<Nop>", { noremap = true, silent = true })
 end
@@ -13,8 +12,7 @@ disable("n", "<leader>l") -- open Lazy
 disable("n", "<leader>cm") -- open Mason
 disable("n", "<leader>cl") -- LspInfo
 disable("n", "<leader>L") -- LazyVim changelog
-disable("i", "<C-w>") -- delete backwards in insert mode, redefined below
-disable("i", "<C-j>") -- move down in insert mode, redefined below
+disable("i", "<C-j>") -- default: move down in insert mode, redefined below
 
 --[[ General Mappings ]]
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down" })
@@ -74,28 +72,10 @@ map("t", "<C-;>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 --   map("n", "<leader>0", function() harpoon:list():select(0) end, { desc = "Harpoon 0" })
 -- end
 
--- When <Tab> is pressed, either accept the autocomplete suggestion, jump to the next snippet placeholder, or just insert a tab
-map("i", "<Tab>", function()
-  if require("copilot.suggestion").is_visible() then
-    require("copilot.suggestion").accept()
-  elseif require("luasnip").jumpable(1) then
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-next", true, false, true), "m", false)
-  else
-    return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-  end
-end, { desc = "Tab, or accept copilot, or jump in snippet" })
-
-map("i", "<S-Tab>", function()
-  if require("luasnip").jumpable(-1) then
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, false, true), "m", false)
-  else
-    return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Tab>", true, false, true), "n", false)
-  end
-end, { desc = "Shift-Tab, or jump back in snippet" })
-
-map("i", "<C-l>", require("copilot.suggestion").accept_word, { desc = "Copilot accept single word" })
+map("i", "<Tab>", require("copilot.suggestion").accept, { desc = "Copilot accept" })
+map("i", "¬" --[[ Option + l ]], require("copilot.suggestion").accept_word, { desc = "Copilot accept single word" })
 map("i", "<C-j>", require("copilot.suggestion").next, { desc = "Copilot next suggestion" })
 map("i", "<C-e>", function()
   require("copilot.suggestion").dismiss()
   require("cmp").mapping.abort()
-end, { desc = "Close cmp and dismiss copilot" })
+end, { desc = "Close autocomplete and dismiss copilot" })
