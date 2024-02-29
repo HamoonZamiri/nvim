@@ -16,7 +16,7 @@ brew install neovim
 ```
 - Clone this repository to `~/.config/nvim`:
 ```bash
-git clone https://github.com/1239uth/nvim ~/.config/nvim
+git clone https://github.com/uthmanmoh/nvim ~/.config/nvim
 ```
 
 - Setup a [Nerd Font](https://www.nerdfonts.com/). I use JetBrainsMono Nerd Font. You can install it using
