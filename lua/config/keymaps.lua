@@ -72,7 +72,14 @@ map("t", "<C-;>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 --   map("n", "<leader>0", function() harpoon:list():select(0) end, { desc = "Harpoon 0" })
 -- end
 
-map("i", "<Tab>", require("copilot.suggestion").accept, { desc = "Copilot accept" })
+map("i", "<Tab>", function()
+  if require("copilot.suggestion").is_visible() then
+    require("copilot.suggestion").accept()
+  else
+    return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+  end
+end, { desc = "Tab, or accept copilot" })
+
 map("i", "¬" --[[ Option + l ]], require("copilot.suggestion").accept_word, { desc = "Copilot accept single word" })
 map("i", "<C-j>", require("copilot.suggestion").next, { desc = "Copilot next suggestion" })
 map("i", "<C-e>", function()
