@@ -172,7 +172,7 @@ $$
       i(2),
     }),
     {
-      show_condition = in_mathzone,
+      condition = in_mathzone,
     }
   ),
 
@@ -187,7 +187,7 @@ $$
         return snip.captures[1]
       end), text = d(1, get_visual) }
     ),
-    { show_condition = in_mathzone }
+    { condition = in_mathzone }
   ),
 
   s(

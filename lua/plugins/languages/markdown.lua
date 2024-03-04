@@ -61,10 +61,15 @@ return {
   -- Obsidian - https://blog.gabedunn.dev/posts/2023-03-09-neovim-config.html#obsidian
   {
     "epwalsh/obsidian.nvim",
-    version = "*",
+    version = false, -- get latest version
     lazy = true,
     ft = "markdown",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
     keys = {
       { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open Obsidian" },
       { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Create a new Obsidian Document" },
@@ -74,8 +79,14 @@ return {
       { "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Obsidian Rename current note" },
       { "<leader>ot", "<cmd>ObsidianTemplate<cr>", desc = "Insert Obsidian Template into file" },
     },
+
     opts = {
-      dir = "~/Documents/Obsidian Vault",
+      workspaces = {
+        {
+          name = "Obsidian Vault",
+          path = "~/Documents/Obsidian Vault",
+        },
+      },
       open_app_foreground = true,
       completion = {
         nvim_cmp = true, -- with this set to true, it automatically configures completion on its own
@@ -94,18 +105,6 @@ return {
         end
       end,
     },
-    config = function(_, opts)
-      require("obsidian").setup(opts)
-
-      -- if cursor is on a link in an obsidian file, gf will follow the reference, otherwise it will behave normally
-      vim.keymap.set("n", "gf", function()
-        if require("obsidian").util.cursor_on_markdown_link() then
-          return "<cmd>ObsidianFollowLink<CR>"
-        else
-          return "gf"
-        end
-      end, { noremap = false, expr = true })
-    end,
   },
 
   {
