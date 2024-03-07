@@ -7,8 +7,9 @@ return {
           -- Modify the `rg` command to include hidden files but ignore `node_modules` and `.git`
           find_command = {
             "rg",
-            "--no-ignore",
             "--hidden",
+            "--ignore-file",
+            vim.fn.expand("~/.gitignore"), -- ignore everything in ~/.gitignore
             "--files",
             "-g",
             "!**/node_modules/*",
