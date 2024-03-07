@@ -10,3 +10,5 @@ vim.diagnostic.config({
 })
 
 vim.opt.mousescroll = "ver:1,hor:6" -- Default: "ver:3,hor:6"
+
+vim.g.root_spec = { { ".git", "lua" }, "lsp", "cwd" }
