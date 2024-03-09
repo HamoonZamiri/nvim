@@ -25,9 +25,9 @@ brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono-nerd-font
 ```
 - Make sure you set the font in your terminal emulator to the Nerd Font you installed, and restart the terminal.
-- Install these additional tools for better performance:
+- You may also need to install these tools for certain things to work:
 ```bash
-brew install ripgrep fzf
+brew install ripgrep fzf fd
 ```
 See [ripgrep](https://github.com/BurntSushi/ripgrep) and [fzf](https://github.com/junegunn/fzf) for more information.
 
