@@ -92,6 +92,7 @@ return {
         nvim_cmp = true, -- with this set to true, it automatically configures completion on its own
       },
       disable_frontmatter = true,
+      use_advanced_uri = true,
       templates = {
         subdir = "templates",
         date_format = "%Y-%m-%d",

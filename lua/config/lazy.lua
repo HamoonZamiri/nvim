@@ -38,7 +38,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.dap" },
     { import = "lazyvim.plugins.extras.ui.edgy" },
 
-    -- import/override with your plugins
+    -- My local plugin imports
     { import = "plugins" },
     { import = "plugins.editing" },
     { import = "plugins.git" },
