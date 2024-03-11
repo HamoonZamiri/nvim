@@ -15,8 +15,8 @@ disable("n", "<leader>L") -- LazyVim changelog
 disable("i", "<C-j>") -- default: move down in insert mode, redefined below
 
 --[[ General Mappings ]]
-map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
+map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
 
 -- https://github.com/NvChad/NvChad/blob/8aec881517ae9e39990507f3bc7dfebfb38d531a/lua/core/mappings.lua#L73
 vim.opt.clipboard = "unnamedplus"
