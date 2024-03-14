@@ -2,7 +2,17 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      enable_normal_mode_for_inputs = true,
+      event_handlers = {
+        {
+          event = "neo_tree_popup_input_ready",
+          ---@param input NuiInput
+          handler = function(input)
+            -- vim.cmd("exe 'norm T.'") -- Move before the first dot in insert mode
+            vim.cmd("exe 'norm ^l'") -- Move to start of line
+            vim.cmd("stopinsert") -- Enter normal mode
+          end,
+        },
+      },
       filesystem = {
         -- Make neo-tree group empty directories like kotlin/com/example
         group_empty_dirs = true,

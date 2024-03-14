@@ -62,11 +62,6 @@ map("i", "<Tab>", function()
   end
 end, { desc = "Tab, or accept copilot" })
 
-map("n", "<leader>gf", function()
-  local git_path = vim.fn.system("git ls-files --full-name " .. vim.api.nvim_buf_get_name(0))
-  Util.terminal({ "lazygit", "-f", vim.trim(git_path) }, { esc_esc = false, ctrl_hjkl = false })
-end, { desc = "Lazygit current file history" })
-
 map("i", "¬" --[[ Option + l ]], require("copilot.suggestion").accept_word, { desc = "Copilot accept single word" })
 map("i", "<C-j>", require("copilot.suggestion").next, { desc = "Copilot next suggestion" })
 map("i", "<C-e>", function()
