@@ -209,4 +209,16 @@ $$
     ),
     { show_condition = in_mathzone }
   ),
+
+  s(
+    { trig = "und", name = "Underbrace" },
+    fmta("<visual>\\underbrace{<>}_{<>}", {
+      visual = f(function(_, snip)
+        return snip.captures[1]
+      end),
+      d(1, get_visual),
+      i(2),
+    }),
+    { show_condition = in_mathzone }
+  ),
 }
