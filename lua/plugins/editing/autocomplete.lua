@@ -64,7 +64,7 @@ return {
       -- Copilot keymaps
 
       -- Toggle copilot on/off
-      vim.keymap.set("n", "<leader>uo", function()
+      vim.keymap.set("n", "<leader>ct", function()
         if copilot_active() then
           vim.cmd("Copilot disable")
           vim.notify("Copilot disabled", "info")

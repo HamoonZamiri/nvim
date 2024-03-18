@@ -14,6 +14,20 @@ disable("n", "<leader>cl") -- LspInfo
 disable("n", "<leader>L") -- LazyVim changelog
 disable("i", "<C-j>") -- default: move down in insert mode, redefined below
 
+-- Remap arrow keys to print message to use hjkl
+map("n", "<Up>", function()
+  vim.notify("Use `k` instead up `Up Arrow`", "warn")
+end, { desc = "Disable <Up> to use k instead" })
+map("n", "<Down>", function()
+  vim.notify("Use `j` instead up `Down Arrow`", "warn")
+end, { desc = "Disable <Down> to use j instead" })
+map("n", "<Left>", function()
+  vim.notify("Use `h` instead of `Left Arrow`", "warn")
+end, { desc = "Disable <Left> to use h instead" })
+map("n", "<Right>", function()
+  vim.notify("Use `l` instead of `Right Arrow`", "warn")
+end, { desc = "Disable <Right> to use l instead" })
+
 --[[ General Mappings ]]
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
 map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
@@ -34,12 +48,6 @@ map("n", "<leader>fS", function()
     require("telescope.builtin").lsp_workspace_symbols({ query = query })
   end)
 end, { desc = "LSP workspace symbols" })
-
--- git diff mappings
-if vim.bo.filetype == "git" or vim.bo.filetype == "diff" then
-  map("n", "<leader>1", ":diffget //2<cr>", { desc = "Git diff get 2" })
-  map("n", "<leader>2", ":diffget //3<cr>", { desc = "Git diff get 3" })
-end
 
 --[[ Floating Terminal ]]
 local Util = require("lazyvim.util")
