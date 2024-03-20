@@ -25,28 +25,54 @@ return {
         end,
         desc = "Harpoon append",
       },
-    },
-    init = function()
-      local harpoon = require("harpoon")
-
-      -- Set Harpoon keymaps for files 1-5
-      for i = 1, 3 do
-        vim.keymap.set("n", "<leader>" .. i, function()
+      {
+        "<leader>1",
+        function()
           local cur_win = vim.api.nvim_get_current_win()
           -- If the current window is a diff window, set the mapping to run diffget instead
           if vim.api.nvim_win_get_option(cur_win, "diff") then
-            vim.cmd(":diffget " .. i)
+            vim.cmd(":diffget 1")
           else
-            harpoon:list():select(i)
+            require("harpoon"):list():select(1)
           end
-        end, { desc = "Harpoon " .. i .. " or :diffget " .. i })
-
-        for j = 4, 5 do
-          vim.keymap.set("n", "<leader>" .. j, function()
-            harpoon:list():select(j)
-          end, { desc = "Harpoon " .. j })
-        end
-      end
-    end,
+        end,
+      },
+      {
+        "<leader>2",
+        function()
+          local cur_win = vim.api.nvim_get_current_win()
+          -- If the current window is a diff window, set the mapping to run diffget instead
+          if vim.api.nvim_win_get_option(cur_win, "diff") then
+            vim.cmd(":diffget 2")
+          else
+            require("harpoon"):list():select(2)
+          end
+        end,
+      },
+      {
+        "<leader>3",
+        function()
+          local cur_win = vim.api.nvim_get_current_win()
+          -- If the current window is a diff window, set the mapping to run diffget instead
+          if vim.api.nvim_win_get_option(cur_win, "diff") then
+            vim.cmd(":diffget 3")
+          else
+            require("harpoon"):list():select(3)
+          end
+        end,
+      },
+      {
+        "<leader>4",
+        function()
+          require("harpoon"):list():select(4)
+        end,
+      },
+      {
+        "<leader>5",
+        function()
+          require("harpoon"):list():select(5)
+        end,
+      },
+    },
   },
 }

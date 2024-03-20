@@ -29,7 +29,6 @@ return {
   -- Angle Bracket snippets since fmta doesn't work with them
   s({ trig = "def", name = "Definition callout" }, { t({ "> [!danger] Definition:", "" }), t("> ") }),
   s({ trig = "thm", name = "Theorem callout" }, { t("> [!tip] Theorem "), i(1), t({ ":", "> " }) }),
-  s({ trig = "theorem", name = "Theorem callout" }, { t("> [!tip] Theorem "), i(1), t({ ":", "> " }) }),
 
   -- <div style="page-break-after: always; visibility: hidden">
   -- \pagebreak

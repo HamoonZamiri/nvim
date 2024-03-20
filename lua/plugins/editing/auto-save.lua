@@ -4,8 +4,6 @@ return {
   {
     "okuuva/auto-save.nvim",
 
-    event = "VeryLazy",
-
     keys = {
       {
         "<leader>ua",
