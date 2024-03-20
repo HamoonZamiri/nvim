@@ -32,8 +32,7 @@ return {
 
   {
     "zbirenbaum/copilot.lua",
-    lazy = true,
-    event = "InsertEnter",
+    event = "LazyFile",
     opts = {
       suggestion = {
         enabled = true,
