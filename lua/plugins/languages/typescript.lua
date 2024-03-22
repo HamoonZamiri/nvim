@@ -19,6 +19,7 @@ return {
   -- Disable tsserver with lspconfig since we're using typescript-tools.nvim
   {
     "williamboman/mason-lspconfig.nvim",
+    ft = { "typescript", "typescriptreact" },
     opts = {
       handlers = {
         function(server_name)
@@ -33,7 +34,10 @@ return {
   -- Utils
   {
     "dmmulroy/tsc.nvim",
-    opts = {},
+    opts = {
+      use_trouble_qflist = true,
+      auto_focus_qflist = true,
+    },
     cmd = "TSC",
   },
   {
