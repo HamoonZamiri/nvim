@@ -5,9 +5,11 @@ return {
       event_handlers = {
         {
           event = "neo_tree_popup_input_ready",
-          ---@param input NuiInput
-          handler = function(input)
-            -- vim.cmd("exe 'norm T.'") -- Move before the first dot in insert mode
+          ---@param args { bufnr: integer, winid: integer }
+          handler = function(args)
+            -- map <esc> to enter normal mode (by default closes prompt)
+            vim.keymap.set("i", "<esc>", vim.cmd.stopinsert, { noremap = true, buffer = args.bufnr })
+
             vim.cmd("exe 'norm ^l'") -- Move to start of line
             vim.cmd("stopinsert") -- Enter normal mode
           end,
