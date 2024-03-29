@@ -78,6 +78,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "log" },
+  callback = function()
+    vim.opt_local.wrap = true
+  end,
+  desc = "Disable wrapping for log files",
+})
+
 --[[Autosave functionality for Markdown files]]
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
