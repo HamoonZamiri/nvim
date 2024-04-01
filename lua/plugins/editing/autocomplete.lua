@@ -1,33 +1,18 @@
 -- override default nvim-cmp to add border around the completion window
 return {
   {
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      opts.window = {
-        completion = require("cmp").config.window.bordered(),
-        documentation = require("cmp").config.window.bordered(),
-      }
-      -- disable ghost text for autocomplete since copilot is using ghost text
-      opts.experimental = {
-        ghost_text = false,
-      }
-
-      return opts
-    end,
-  },
-
-  -- this is for copilot in autocomplete menu, don't need this since using ghost text
-  {
-    "zbirenbaum/copilot-cmp",
-    enabled = false,
-  },
-
-  {
-    "L3MON4D3/LuaSnip",
-    -- disable the tab key here and enable it in keymaps.lua
-    keys = function()
-      return {}
-    end,
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        yaml = true,
+        help = true,
+      },
+    },
   },
 
   {
@@ -97,6 +82,70 @@ return {
         require("copilot.suggestion").dismiss()
         require("cmp").mapping.abort()
       end, { desc = "Close autocomplete and dismiss copilot" })
+    end,
+  },
+
+  {
+    "L3MON4D3/LuaSnip",
+    -- disable the tab key here and enable it in copilot settings
+    keys = function()
+      return {}
+    end,
+  },
+
+  -- Copilot in lualine
+  {
+    "nvim-lualine/lualine.nvim",
+    optional = true,
+    event = "VeryLazy",
+    opts = function(_, opts)
+      local colors = {
+        [""] = LazyVim.ui.fg("Special"),
+        ["Normal"] = LazyVim.ui.fg("Special"),
+        ["Warning"] = LazyVim.ui.fg("DiagnosticError"),
+        ["InProgress"] = LazyVim.ui.fg("DiagnosticWarn"),
+      }
+      table.insert(opts.sections.lualine_x, 2, {
+        function()
+          local icon = require("lazyvim.config").icons.kinds.Copilot
+          local status = require("copilot.api").status.data
+          return icon .. (status.message or "")
+        end,
+        cond = function()
+          if not package.loaded["copilot"] then
+            return
+          end
+          local ok, clients = pcall(LazyVim.lsp.get_clients, { name = "copilot", bufnr = 0 })
+          if not ok then
+            return false
+          end
+          return ok and #clients > 0
+        end,
+        color = function()
+          if not package.loaded["copilot"] then
+            return
+          end
+          local status = require("copilot.api").status.data
+          return colors[status.status] or colors[""]
+        end,
+      })
+    end,
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      opts.window = {
+        -- add border around completion window
+        completion = require("cmp").config.window.bordered(),
+        documentation = require("cmp").config.window.bordered(),
+      }
+      -- disable ghost text for autocomplete since copilot is using ghost text
+      opts.experimental = {
+        ghost_text = false,
+      }
+
+      return opts
     end,
   },
 }
