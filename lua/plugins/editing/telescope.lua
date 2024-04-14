@@ -1,6 +1,27 @@
 return {
   {
     "telescope.nvim",
+    keys = {
+      {
+        "<leader>fd",
+        function()
+          require("telescope.builtin").find_files({
+            follow = true,
+            find_command = {
+              "fd",
+              "--type",
+              "d",
+              "--hidden",
+              "--exclude",
+              ".git",
+              "--exclude",
+              "node_modules",
+            },
+          })
+        end,
+        desc = "Find directories",
+      },
+    },
     opts = {
       pickers = {
         find_files = {
@@ -10,7 +31,7 @@ return {
             "--hidden",
             "--ignore-file",
             vim.fn.expand("~/.gitignore"), -- ignore everything in ~/.gitignore
-            "--files",
+            "--files", -- also ignore node_modules and .git
             "-g",
             "!**/node_modules/*",
             "-g",
