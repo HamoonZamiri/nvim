@@ -15,9 +15,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.linting" },
     { import = "lazyvim.plugins.extras.formatting" },
 
-    -- Just for racket formatting for now
-    { import = "lazyvim.plugins.extras.lsp.none-ls" },
-
     -- Languages
     { import = "lazyvim.plugins.extras.lang.go" },
     { import = "lazyvim.plugins.extras.lang.java" },
