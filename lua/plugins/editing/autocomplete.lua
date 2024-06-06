@@ -127,6 +127,10 @@ return {
 
   {
     "hrsh7th/nvim-cmp",
+    -- disable the tab key here and enable it in copilot settings
+    keys = function()
+      return {}
+    end,
     opts = function(_, opts)
       opts.window = {
         -- add border around completion window
