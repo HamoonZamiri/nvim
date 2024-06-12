@@ -38,7 +38,7 @@ return {
   -- Disable tsserver with lspconfig since we're using typescript-tools.nvim
   {
     "williamboman/mason-lspconfig.nvim",
-    ft = { "typescript", "typescriptreact" },
+    ft = { "typescript", "typescriptreact", "vue" },
     opts = {
       handlers = {
         function(server_name)
