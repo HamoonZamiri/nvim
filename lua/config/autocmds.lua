@@ -36,14 +36,6 @@ autocmds("VimEnter", {
 })
 
 autocmds("FileType", {
-  desc = "Auto select virtualenv when opening a python file",
-  pattern = { "python" },
-  callback = function()
-    require("venv-selector").retrieve_from_cache()
-  end,
-})
-
-autocmds("FileType", {
   desc = "Set indent to 4 spaces for kt files",
   pattern = { "kt" },
   callback = function()
