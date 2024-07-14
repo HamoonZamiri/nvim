@@ -111,7 +111,9 @@ return {
   {
     "folke/which-key.nvim",
     opts = function(_, opts)
-      opts.defaults["<leader>o"] = { name = "+obsidian" }
+      if type(opts.spec) == "table" then
+        table.insert(opts.spec or {}, { "<leader>o", group = "Obsidian" })
+      end
     end,
   },
 }
