@@ -41,6 +41,10 @@ map("x", "p", "pgv=gvy", { desc = "Paste without copying" })
 vim.api.nvim_create_user_command("Q", "q", {})
 vim.api.nvim_create_user_command("Qa", "qa", {})
 
+vim.api.nvim_create_user_command("CodeiumChat", function()
+  return vim.fn["codeium#Chat"]()
+end, {})
+
 -- https://github.com/nvim-telescope/telescope.nvim/issues/964#issuecomment-1517629615
 -- Make a workspace symbol search take an input because it's broken with empty string
 map("n", "<leader>fS", function()
