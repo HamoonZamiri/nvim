@@ -13,6 +13,9 @@ return {
       vim.keymap.set("i", "<c-e>", function()
         return vim.fn["codeium#Clear"]()
       end, { expr = true, silent = true })
+      vim.keymap.set("i", "<M-l>", function()
+        return vim.fn["codeium#AcceptNextWord"]()
+      end, { expr = true, silent = true })
     end,
   },
   -- {
@@ -76,7 +79,7 @@ return {
   --     end, { desc = "Tab, or accept copilot" })
   --
   --     -- Accept single word
-  --     vim.keymap.set("i", "¬" --[[ Option + l ]], function()
+  --     vim.keymap.set("i", "<M-l>", function()
   --       require("copilot.suggestion").accept_word()
   --     end, { desc = "Copilot accept single word" })
   --
