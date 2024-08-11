@@ -16,7 +16,6 @@ vim.g.root_spec = { "cwd", { ".git", "lua" }, "lsp" }
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
-vim.keymap.set("i", "<m-bs>", "<c-w>", { noremap = true, silent = true })
 vim.g.root_spec = { { ".git", "lua" }, "lsp", "cwd" }
 
 vim.opt.clipboard = "unnamedplus"
