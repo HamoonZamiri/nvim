@@ -62,3 +62,6 @@ end
 map("n", "<M-;>", lazyterm, { desc = "Terminal (root dir)" })
 map("n", "<C-;>", lazyterm, { desc = "Terminal (root dir)" })
 map("t", "<C-;>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
+-- mapping to allow option backspace to act as ctrl w
+vim.keymap.set("i", "<m-bs>", "<c-w>", { noremap = true, silent = true })
