@@ -21,15 +21,14 @@ git clone https://github.com/uthmanmoh/nvim ~/.config/nvim
 
 - Setup a [Nerd Font](https://www.nerdfonts.com/). I use JetBrainsMono Nerd Font. You can install it using
 ```bash
-brew tap homebrew/cask-fonts
-brew install --cask font-jetbrains-mono-nerd-font
+brew install font-jetbrains-mono-nerd-font
 ```
 - Make sure you set the font in your terminal emulator to the Nerd Font you installed, and restart the terminal.
-- You may also need to install these tools for certain things to work:
+
+- Install these required tools:
 ```bash
 brew install ripgrep fzf fd
 ```
-See [ripgrep](https://github.com/BurntSushi/ripgrep) and [fzf](https://github.com/junegunn/fzf) for more information.
 
 - Start neovim:
 ```bash
