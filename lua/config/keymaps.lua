@@ -32,8 +32,9 @@ end, { desc = "Disable <Right> to use l instead" })
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
 map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
 
+vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
+
 -- https://github.com/NvChad/NvChad/blob/8aec881517ae9e39990507f3bc7dfebfb38d531a/lua/core/mappings.lua#L73
-vim.opt.clipboard = "unnamedplus"
 -- map("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { desc = "Paste without copying" })
 map("x", "p", "pgv=gvy", { desc = "Paste without copying" })
 
