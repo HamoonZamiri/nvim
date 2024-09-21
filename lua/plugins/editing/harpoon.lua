@@ -30,8 +30,8 @@ return {
         function()
           local cur_win = vim.api.nvim_get_current_win()
           -- If the current window is a diff window, set the mapping to run diffget instead
-          if vim.api.nvim_win_get_option(cur_win, "diff") then
-            vim.cmd(":diffget 1")
+          if vim.api.nvim_get_option_value("diff", { win = cur_win }) then
+            vim.cmd("diffget 1")
           else
             require("harpoon"):list():select(1)
           end
@@ -42,8 +42,8 @@ return {
         function()
           local cur_win = vim.api.nvim_get_current_win()
           -- If the current window is a diff window, set the mapping to run diffget instead
-          if vim.api.nvim_win_get_option(cur_win, "diff") then
-            vim.cmd(":diffget 2")
+          if vim.api.nvim_get_option_value("diff", { win = cur_win }) then
+            vim.cmd("diffget 2")
           else
             require("harpoon"):list():select(2)
           end
@@ -54,8 +54,8 @@ return {
         function()
           local cur_win = vim.api.nvim_get_current_win()
           -- If the current window is a diff window, set the mapping to run diffget instead
-          if vim.api.nvim_win_get_option(cur_win, "diff") then
-            vim.cmd(":diffget 3")
+          if vim.api.nvim_get_option_value("diff", { win = cur_win }) then
+            vim.cmd("diffget 3")
           else
             require("harpoon"):list():select(3)
           end
