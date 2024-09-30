@@ -64,3 +64,28 @@ map("t", "<C-;>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 -- mapping to allow option backspace to act as ctrl w
 vim.keymap.set("i", "<m-bs>", "<c-w>", { noremap = true, silent = true })
+
+-- Update command
+vim.api.nvim_create_user_command("Update", function()
+  -- Config directory path
+  local config_dir = vim.fn.expand("~/.config/nvim")
+
+  -- Run git pull in the Neovim config directory
+  local job_id = vim.fn.jobstart({ "git", "-C", config_dir, "pull" }, {
+    on_exit = function(_, exit_code)
+      if exit_code == 0 then
+        vim.notify("Neovim config repo pulled successfully", vim.log.levels.INFO)
+      else
+        vim.notify("Failed to pull Neovim config repo", vim.log.levels.WARN)
+      end
+      vim.schedule(function()
+        require("lazy.manage").sync({ show = false })
+        vim.notify("Plugins synced successfully", vim.log.levels.INFO)
+      end)
+    end,
+  })
+
+  if job_id <= 0 then
+    vim.notify("Failed to start git pull job", vim.log.levels.ERROR)
+  end
+end, {})
