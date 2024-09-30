@@ -1,3 +1,5 @@
+local obsidian_vault_dir = "~/Document/Obsidian Vault/"
+
 return {
   -- Markdown preview
   {
@@ -73,6 +75,8 @@ return {
     version = false, -- get latest version
     lazy = true,
     ft = "markdown",
+    -- Only load obsidian if the vault directory exists
+    cond = vim.fn.isdirectory(vim.fn.expand(obsidian_vault_dir)) == 1,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
@@ -94,7 +98,7 @@ return {
       workspaces = {
         {
           name = "Obsidian Vault",
-          path = "~/Documents/Obsidian Vault",
+          path = obsidian_vault_dir,
         },
       },
       open_app_foreground = true,
