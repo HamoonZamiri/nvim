@@ -25,64 +25,35 @@ return {
       opts.sections.lualine_z = {
         {
           "filetype",
-          color = { fg = "#000000", gui = "none" },
+          color = { fg = "#000000", gui = "bold" },
           separator = "",
         },
-        function()
-          return require("lsp-progress").progress()
-        end,
-      }
-    end,
-  },
 
-  {
-    "linrongbin16/lsp-progress.nvim",
-    opts = {
-      client_format = function(client_name, spinner, series_messages)
-        if #series_messages == 0 then
-          return nil
-        end
-        return {
-          name = client_name,
-        }
-      end,
-      format = function(client_messages)
-        --- @param name string
-        --- @param msg string?
-        --- @return string
-        local function stringify(name, msg)
-          return msg and string.format("%s %s", name, msg) or name
-        end
+        -- Add active lsp's to rightmost
+        {
+          function()
+            local clients = vim.lsp.get_clients()
+            if #clients == 0 then
+              return ""
+            end
 
-        local sign = "" -- nf-fa-gear \uf013
-        local lsp_clients = require("lsp-progress.api").lsp_clients()
-        -- Remove copilot and others
-        lsp_clients = vim.tbl_filter(function(cli)
-          return not vim.tbl_contains({ "copilot", "tailwindcss", "pyright" }, cli.name)
-        end, lsp_clients)
-
-        local messages_map = {}
-        for _, climsg in ipairs(client_messages) do
-          messages_map[climsg.name] = climsg.body
-        end
-
-        if #lsp_clients > 0 then
-          local builder = {}
-          for _, cli in ipairs(lsp_clients) do
-            if type(cli) == "table" and type(cli.name) == "string" and string.len(cli.name) > 0 then
-              if messages_map[cli.name] then
-                table.insert(builder, stringify(cli.name, messages_map[cli.name]))
-              else
-                table.insert(builder, stringify(cli.name))
+            local not_included_serevers = { "tailwindcss", "pyright" }
+            local client_names = {}
+            for _, client in ipairs(clients) do
+              if not vim.tbl_contains(not_included_serevers, client.name) then
+                table.insert(client_names, client.name)
               end
             end
-          end
-          if #builder > 0 then
-            return sign .. " " .. table.concat(builder, ", ")
-          end
-        end
-        return ""
-      end,
-    },
+
+            if #client_names > 0 then
+              return " " .. table.concat(client_names, ", ")
+            else
+              return ""
+            end
+          end,
+          color = { fg = "#000000", gui = "none" },
+        },
+      }
+    end,
   },
 }
