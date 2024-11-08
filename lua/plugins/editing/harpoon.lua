@@ -10,7 +10,7 @@ return {
     },
     keys = {
       {
-        "<leader>h",
+        "<leader>hh",
         function()
           local harpoon = require("harpoon")
           harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -18,7 +18,7 @@ return {
         desc = "Harpoon quick menu",
       },
       {
-        "<leader>a",
+        "<leader>ha",
         function()
           local harpoon = require("harpoon")
           harpoon:list():append()
