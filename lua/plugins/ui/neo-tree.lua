@@ -21,7 +21,9 @@ return {
         scan_mode = "deep",
       },
       window = {
-        ["K"] = "show_file_details",
+        mappings = {
+          ["K"] = "show_file_details",
+        },
       },
     },
   },

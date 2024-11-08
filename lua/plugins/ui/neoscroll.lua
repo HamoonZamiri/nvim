@@ -10,19 +10,6 @@ return {
       { "zz", desc = "Scroll to center" },
       { "zb", desc = "Scroll to bottom" },
     },
-    opts = {
-      pre_hook = function()
-        vim.opt.eventignore:append({
-          "WinScrolled",
-          "CursorMoved",
-        })
-      end,
-      post_hook = function()
-        vim.opt.eventignore:remove({
-          "WinScrolled",
-          "CursorMoved",
-        })
-      end,
-    },
+    opts = {},
   },
 }
