@@ -3,12 +3,11 @@ return {
     "michaelrommel/nvim-silicon",
     lazy = true,
     cmd = "Silicon",
+    main = "nvim-silicon",
     opts = {
       -- Configuration here, or leave empty to use defaults
-      font = "JetBrainsMono Nerd Font=34;Noto Color Emoji=34",
       theme = "Dracula",
       to_clipboard = true,
-      background = "#94e2d5",
     },
     init = function()
       vim.keymap.set(
