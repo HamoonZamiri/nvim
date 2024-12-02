@@ -15,10 +15,13 @@ autocmds("FileType", {
 })
 
 autocmds("FileType", {
-  pattern = { "tex", "markdown" },
+  -- markdown, latex, and anything with tailwind
+  pattern = { "tex", "markdown", "typescript", "typescriptreact", "html" },
   callback = function()
     vim.opt.wrap = true
     vim.opt.linebreak = true
+    vim.opt.breakindent = true
+
   end,
   desc = "Toggle word wrap for Latex and Markdown files",
 })

@@ -16,6 +16,8 @@ return {
               ".git",
               "--exclude",
               "node_modules",
+              "--exclude",
+              "build",
             },
           })
         end,
@@ -31,11 +33,15 @@ return {
             "--hidden",
             "--ignore-file",
             vim.fn.expand("~/.gitignore"), -- ignore everything in ~/.gitignore
-            "--files", -- also ignore node_modules and .git
+            "--files",                     -- also ignore node_modules and .git
             "-g",
             "!**/node_modules/*",
             "-g",
             "!**/.git/*",
+            "-g",
+            "!**/build/*",
+            "-g",
+            "!**/.*cache/*",
           },
         },
       },
