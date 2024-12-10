@@ -1,29 +1,49 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      -- Remove "text" as an autocomplete source
-      opts.sources = vim.tbl_filter(function(source)
-        return not vim.tbl_contains({ "buffer", "nvim_lsp" }, source.name)
-      end, opts.sources)
-      table.insert(opts.sources, 1, {
-        name = "nvim_lsp",
-        entry_filter = function(entry, _)
-          return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
-        end,
-      })
-
-      -- add border around completion window
-      opts.window = {
-        completion = require("cmp").config.window.bordered(),
-        documentation = require("cmp").config.window.bordered(),
-      }
-
-      -- disable ghost text for autocomplete
-      opts.experimental = {
-        ghost_text = false,
-      }
-      return opts
-    end,
+    "saghen/blink.cmp",
+    opts = {
+      completion = {
+        keyword = {
+          range = 'full',
+        },
+        menu = {
+          border = 'rounded',
+          draw = {
+            -- Show the type of the autocomplete
+            columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+          },
+        },
+        documentation = {
+          window = {
+            border = 'rounded',
+          }
+        },
+        ghost_text = {
+          -- Disable the preview text for each autocomplete option
+          enabled = false,
+        }
+      },
+      sources = {
+        completion = {
+          enabled_providers = { "lsp", "path", "snippets", "buffer" },
+        },
+        providers = {
+          lsp = {
+            transform_items = function (ctx, items)
+              -- Remove the "Text" source from lsp autocomplete
+              return vim.tbl_filter(function(item)
+                return item.kind ~= vim.lsp.protocol.CompletionItemKind.Text
+              end, items)
+            end
+          },
+          snippets = {
+            opts = {
+              -- Disable the "all" snippets which gives useless stuff like the 'date' snippet
+              global_snippets = {},
+            }
+          }
+        },
+      },
+    }
   },
 }

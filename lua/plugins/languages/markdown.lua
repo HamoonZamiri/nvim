@@ -80,7 +80,6 @@ return {
     cond = vim.fn.isdirectory(vim.fn.expand(obsidian_vault_dir)) == 1,
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
       "nvim-telescope/telescope.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
@@ -103,9 +102,6 @@ return {
         },
       },
       open_app_foreground = true,
-      completion = {
-        nvim_cmp = true, -- with this set to true, it automatically configures completion on its own
-      },
       disable_frontmatter = true,
       use_advanced_uri = true,
       templates = {
