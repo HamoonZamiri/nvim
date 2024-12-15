@@ -1,12 +1,11 @@
-
 return {
-  {
-    "folke/snacks.nvim",
-    opts = {
-      dashboard = {
-        preset = {
-          -- Taken from https://github.com/MaximilianLloyd/ascii.nvim/blob/master/lua/ascii/text/neovim.lua
-          header = [[                                                                       
+  "folke/snacks.nvim",
+  opts = {
+
+    dashboard = {
+      preset = {
+        -- Taken from https://github.com/MaximilianLloyd/ascii.nvim/blob/master/lua/ascii/text/neovim.lua
+        header = [[                                                                       
                                                                                
                  ████ ██████           █████      ██                     
                 ███████████             █████                             
@@ -27,7 +26,25 @@ return {
             { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
-        },
+      },
+    },
+
+    indent = {
+      enabled = false,
+      -- Decrease number of indent lines
+      indent = {
+        only_scope = true,
+        only_current = true,
+      },
+    },
+
+    input = {
+      relative = "cursor",
+      row = -3,
+      col = 0,
+      keys = {
+        -- Allow using normal mode in inputs like "Code Rename"
+        i_esc = { "<esc>", { "stopinsert" }, mode = "i" },
       },
     },
   },

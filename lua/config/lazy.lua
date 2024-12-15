@@ -33,7 +33,6 @@ require("lazy").setup({
 
     { import = "lazyvim.plugins.extras.dap" },
     { import = "lazyvim.plugins.extras.ui.edgy" },
-    { import = "lazyvim.plugins.extras.coding.blink" },
 
     -- My local plugin imports
     { import = "plugins" },
