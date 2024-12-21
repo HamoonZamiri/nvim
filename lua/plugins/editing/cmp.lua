@@ -4,10 +4,10 @@ return {
     opts = {
       completion = {
         keyword = {
-          range = 'full',
+          range = "full",
         },
         menu = {
-          border = 'rounded',
+          border = "rounded",
           draw = {
             -- Show the type of the autocomplete
             columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
@@ -15,35 +15,31 @@ return {
         },
         documentation = {
           window = {
-            border = 'rounded',
-          }
+            border = "rounded",
+          },
         },
         ghost_text = {
           -- Disable the preview text for each autocomplete option
           enabled = false,
-        }
+        },
       },
       sources = {
-        completion = {
-          enabled_providers = { "lsp", "path", "snippets", "buffer" },
-        },
+        transform_items = function(ctx, items)
+          -- Remove the "Text" source from lsp autocomplete
+          return vim.tbl_filter(function(item)
+            return item.kind ~= vim.lsp.protocol.CompletionItemKind.Text
+          end, items)
+        end,
+        default = { "lsp", "path", "snippets", "buffer" },
         providers = {
-          lsp = {
-            transform_items = function (ctx, items)
-              -- Remove the "Text" source from lsp autocomplete
-              return vim.tbl_filter(function(item)
-                return item.kind ~= vim.lsp.protocol.CompletionItemKind.Text
-              end, items)
-            end
-          },
           snippets = {
             opts = {
               -- Disable the "all" snippets which gives useless stuff like the 'date' snippet
               global_snippets = {},
-            }
-          }
+            },
+          },
         },
       },
-    }
+    },
   },
 }

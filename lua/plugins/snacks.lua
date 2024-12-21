@@ -40,7 +40,7 @@ return {
 
     input = {
       relative = "cursor",
-      row = -3,
+      row = 0,
       col = 0,
       keys = {
         -- Allow using normal mode in inputs like "Code Rename"
