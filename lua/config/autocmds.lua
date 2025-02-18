@@ -27,11 +27,13 @@ autocmds("FileType", {
 })
 
 autocmds("FileType", {
-  desc = "Set indent to 4 spaces for kt files",
-  pattern = { "kt" },
+  desc = "Set indent to 4 spaces for certain files",
+  pattern = { "kt", "json" },
   callback = function()
-    vim.opt.tabstop = 4
-    vim.opt.shiftwidth = 4
+    vim.bo.tabstop = 4
+    vim.bo.shiftwidth = 4
+    vim.bo.expandtab = true
+    vim.bo.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
   end,
 })
 
