@@ -1,7 +1,7 @@
 return {
   -- Replace mini.surround with nvim-surround
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     enabled = false,
   },
 
