@@ -2,29 +2,21 @@ return {
   "olimorris/codecompanion.nvim",
   opts = {
     adapters = {
-      qwen = function()
-        return require("codecompanion.adapters").extend("ollama", {
-          name = "qwen",
-          schema = {
-            model = {
-              default = "qwen-coder-32768",
+      acp = {
+        claude_code = function()
+          return require("codecompanion.adapters").extend("claude_code", {
+            env = {
+              CLAUDE_CODE_OAUTH_TOKEN = "CLAUDE_CODE_OAUTH_TOKEN",
             },
-            num_ctx = {
-              default = 16384,
-            },
-          },
-          -- Enable streaming in all strategies
-          opts = {
-            stream = true,
-          },
-        })
-      end,
+          })
+        end,
+      },
     },
     completion_provider = "blink", -- blink|cmp|coc|default
     strategies = {
-      chat = { adapter = "qwen" },
-      inline = { adapter = "qwen" },
-      action = { adapter = "qwen" },
+      chat = { adapter = "claude_code" },
+      -- inline = { adapter = "acp" },
+      action = { adapter = "claude_code" },
     },
   },
   dependencies = {
