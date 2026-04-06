@@ -15,7 +15,7 @@ return {
     completion_provider = "blink", -- blink|cmp|coc|default
     strategies = {
       chat = { adapter = "claude_code" },
-      -- inline = { adapter = "acp" },
+      inline = { adapter = "claude_code" },
       action = { adapter = "claude_code" },
     },
   },
