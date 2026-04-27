@@ -13,8 +13,9 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
 
-    { import = "lazyvim.plugins.extras.linting" },
-    { import = "lazyvim.plugins.extras.formatting" },
+    { import = "lazyvim.plugins.extras.linting.eslint" },
+    { import = "lazyvim.plugins.extras.formatting.black" },
+    { import = "lazyvim.plugins.extras.formatting.prettier" },
 
     -- Languages
     { import = "lazyvim.plugins.extras.lang.go" },
@@ -38,7 +39,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.snacks_explorer" },
     { import = "lazyvim.plugins.extras.editor.snacks_picker" },
 
-    { import = "lazyvim.plugins.extras.dap" },
+    { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.ui.edgy" },
 
     -- My local plugin imports
