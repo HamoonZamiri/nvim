@@ -38,6 +38,34 @@ return {
       },
     },
 
+    picker = {
+      exclude = {
+        ".DS_Store",
+        ".expert",
+        ".git",
+        ".next",
+        "_build",
+        "coverage",
+        "deps",
+        "dist",
+        "node_modules",
+      },
+      sources = {
+        explorer = {
+          hidden = true,
+          ignored = true,
+        },
+      },
+      files = {
+        hidden = true,
+        ignored = true,
+      },
+      grep = {
+        hidden = true,
+        ignored = true,
+      },
+    },
+
     input = {
       relative = "cursor",
       row = 0,
